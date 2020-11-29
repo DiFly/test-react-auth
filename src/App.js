@@ -6,7 +6,7 @@ import { Layout, Menu, Button, Row, Col } from "antd";
 import React, { lazy, Suspense } from "react";
 import Home from "./routes/Home";
 
-const { Header, Footer, Content } = Layout;
+const { Header, Footer, Content, Sider } = Layout;
 
 const Login = lazy(() => import("./routes/Login"));
 const Register = lazy(() => import("./routes/Register"));
@@ -23,6 +23,7 @@ export default function App() {
           <Header>
             <Row justify="space-between">
               <Col span={22}>
+                <div className="logo" />
                 <Menu
                   theme="dark"
                   mode="horizontal"
@@ -31,22 +32,17 @@ export default function App() {
                   <Menu.Item key="1">
                     <Link to="/">Home</Link>
                   </Menu.Item>
+
                   <Menu.Item key="2">
-                    <Link to="/games/all">Games All</Link>
-                  </Menu.Item>
-                  <Menu.Item key="3">
-                    <Link to="/games/favourite">Games Favourite</Link>
-                  </Menu.Item>
-                  <Menu.Item key="4">
                     <Link to="/about">About</Link>
                   </Menu.Item>
-                  <Menu.Item key="5">
+                  <Menu.Item key="3">
                     <Link to="/users">Users</Link>
                   </Menu.Item>
-                  <Menu.Item key="6">
+                  <Menu.Item key="4">
                     <Link to="/login">Login</Link>
                   </Menu.Item>
-                  <Menu.Item key="7">
+                  <Menu.Item key="5">
                     <Link to="/register">Register</Link>
                   </Menu.Item>
                 </Menu>
@@ -56,18 +52,32 @@ export default function App() {
               </Col>
             </Row>
           </Header>
-          <Content>
-            <Switch>
-              <Route path="/about" component={About} />
-              <Route path="/users" component={Users} />
-              <Route path="/games/all" component={GamesAll} />
-              <Route path="/games/favourite" component={GamesFavourite} />
-              <Route path="/login" component={Login} />
-              <Route path="/register" component={Register} />
-              <Route exact path="/" component={Home} />
-            </Switch>
-          </Content>
-          <Footer>Simple React app by DiFly</Footer>
+          <Layout>
+            <Sider theme="light">
+              <Menu>
+                <Menu.Item>
+                  <Link to="/games/all">Games All</Link>
+                </Menu.Item>
+                <Menu.Item>
+                  <Link to="/games/favourite">Games Favourite</Link>
+                </Menu.Item>
+              </Menu>
+            </Sider>
+            <Content>
+              <Switch>
+                <Route path="/about" component={About} />
+                <Route path="/users" component={Users} />
+                <Route path="/games/all" component={GamesAll} />
+                <Route path="/games/favourite" component={GamesFavourite} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
+                <Route exact path="/" component={Home} />
+              </Switch>
+            </Content>
+          </Layout>
+          <Footer style={{ textAlign: "center" }}>
+            Simple React app by DiFly ©2020
+          </Footer>
         </Suspense>
       </Layout>
     </Router>
