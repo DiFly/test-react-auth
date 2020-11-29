@@ -12,6 +12,8 @@ const Login = lazy(() => import("./routes/Login"));
 const Register = lazy(() => import("./routes/Register"));
 const Users = lazy(() => import("./routes/Users"));
 const About = lazy(() => import("./routes/About"));
+const GamesAll = lazy(() => import("./routes/GamesAll"));
+const GamesFavourite = lazy(() => import("./routes/GamesFavourite"));
 
 export default function App() {
   return (
@@ -30,15 +32,21 @@ export default function App() {
                     <Link to="/">Home</Link>
                   </Menu.Item>
                   <Menu.Item key="2">
-                    <Link to="/about">About</Link>
+                    <Link to="/games/all">Games All</Link>
                   </Menu.Item>
                   <Menu.Item key="3">
-                    <Link to="/users">Users</Link>
+                    <Link to="/games/favourite">Games Favourite</Link>
                   </Menu.Item>
                   <Menu.Item key="4">
-                    <Link to="/login">Login</Link>
+                    <Link to="/about">About</Link>
                   </Menu.Item>
                   <Menu.Item key="5">
+                    <Link to="/users">Users</Link>
+                  </Menu.Item>
+                  <Menu.Item key="6">
+                    <Link to="/login">Login</Link>
+                  </Menu.Item>
+                  <Menu.Item key="7">
                     <Link to="/register">Register</Link>
                   </Menu.Item>
                 </Menu>
@@ -52,6 +60,8 @@ export default function App() {
             <Switch>
               <Route path="/about" component={About} />
               <Route path="/users" component={Users} />
+              <Route path="/games/all" component={GamesAll} />
+              <Route path="/games/favourite" component={GamesFavourite} />
               <Route path="/login" component={Login} />
               <Route path="/register" component={Register} />
               <Route exact path="/" component={Home} />

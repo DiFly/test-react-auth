@@ -10,7 +10,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 134px);
+  min-height: calc(100vh - 164px);
 }
 
 .form-wrapper {
