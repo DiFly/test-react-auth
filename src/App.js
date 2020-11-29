@@ -1,25 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-function App() {
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import "antd/dist/antd.css";
+import { Layout, Menu, Button, Row, Col } from "antd";
+import React, { lazy, Suspense } from "react";
+import Home from "./routes/Home";
+
+const { Header, Footer, Content } = Layout;
+
+const Login = lazy(() => import("./routes/Login"));
+const Register = lazy(() => import("./routes/Register"));
+const Users = lazy(() => import("./routes/Users"));
+const About = lazy(() => import("./routes/About"));
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Layout className="layout">
+        <Suspense fallback={<div>Loading...</div>}>
+          <Header>
+            <Row justify="space-between">
+              <Col span={22}>
+                <Menu
+                  theme="dark"
+                  mode="horizontal"
+                  defaultSelectedKeys={["1"]}
+                >
+                  <Menu.Item key="1">
+                    <Link to="/">Home</Link>
+                  </Menu.Item>
+                  <Menu.Item key="2">
+                    <Link to="/about">About</Link>
+                  </Menu.Item>
+                  <Menu.Item key="3">
+                    <Link to="/users">Users</Link>
+                  </Menu.Item>
+                  <Menu.Item key="4">
+                    <Link to="/login">Login</Link>
+                  </Menu.Item>
+                  <Menu.Item key="5">
+                    <Link to="/register">Register</Link>
+                  </Menu.Item>
+                </Menu>
+              </Col>
+              <Col span={2}>
+                <Button type="primary">Logout</Button>
+              </Col>
+            </Row>
+          </Header>
+          <Content>
+            <Switch>
+              <Route path="/about" component={About} />
+              <Route path="/users" component={Users} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+              <Route exact path="/" component={Home} />
+            </Switch>
+          </Content>
+          <Footer>Simple React app by DiFly</Footer>
+        </Suspense>
+      </Layout>
+    </Router>
   );
 }
-
-export default App;
