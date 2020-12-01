@@ -1,19 +1,12 @@
 import "./App.css";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Link } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Layout, Menu, Button, Row, Col } from "antd";
-import React, { lazy, Suspense } from "react";
-import Home from "./routes/Home";
+import React, { Suspense } from "react";
+import Routes from "./routes/Routes";
 
 const { Header, Footer, Content, Sider } = Layout;
-
-const Login = lazy(() => import("./routes/Login"));
-const Register = lazy(() => import("./routes/Register"));
-const Users = lazy(() => import("./routes/Users"));
-const About = lazy(() => import("./routes/About"));
-const GamesAll = lazy(() => import("./routes/GamesAll"));
-const GamesFavourite = lazy(() => import("./routes/GamesFavourite"));
 
 export default function App() {
   return (
@@ -64,15 +57,7 @@ export default function App() {
               </Menu>
             </Sider>
             <Content>
-              <Switch>
-                <Route path="/about" component={About} />
-                <Route path="/users" component={Users} />
-                <Route path="/games/all" component={GamesAll} />
-                <Route path="/games/favourite" component={GamesFavourite} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-                <Route exact path="/" component={Home} />
-              </Switch>
+              <Routes />
             </Content>
           </Layout>
           <Footer style={{ textAlign: "center" }}>
